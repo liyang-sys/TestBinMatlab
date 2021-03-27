@@ -1,0 +1,60 @@
+function [r,c,stnew,L,Nsub,nsubtem,len]=modify_Hilbert2D_sub(dim,inc,r0,c0,N0,Nsub,st0,nsubtem,L0)
+
+subdim=abs(inc)*2; 
+nsub=double(dim/subdim);  %the number of sub-squares that need to be stretched
+st=ones(1,nsub);  %The number of starting points is equal to the number of sub-squares.
+L=log2(nsub);
+for ia=L0:L %Finding 'st' at level L from level 'L0'. When level in increased by 1, the number in 'st' is doubled. 
+   nsubtem=nsubtem*2; %The number of sub-squares in doubled, and thus the number in 'st' is doubled accordingly.
+   Nsub=Nsub/4;   %the number of elements in the sub-square
+   for pt=2:2:nsubtem %the added 'st' points
+      pt0=pt/2; %performing pt/2, the added points becomes the initial points
+      st(pt-1)=st0(pt0)+Nsub;
+      st(pt)=st(pt-1)+Nsub;    
+   end
+   st0=st;
+end
+
+%Below, the 'vertical' and 'horizatal' feature is used again to perform the increament and decrement:
+hN=Nsub/2; hN1=hN+1; qN=Nsub/4; qN1=qN+1; hqN=hN+qN; hqN1=hqN+1;
+Nsub1=Nsub+1; Nq=Nsub+qN; Nq1=Nq+1; Nh=Nsub+hN;  rsub=zeros(1,Nsub+hN); csub=rsub;
+if inc>0
+   len=N0+nsub*hN; r=int32(zeros(1,len)); c=r;   stnew=st+double([0:hN:hN*(nsub-1)]);
+else
+   len=N0-nsub*hN; r=int32(zeros(1,len)); c=r;   stnew=st-double([0:hN:hN*(nsub-1)]);
+end
+
+ed0=1; ednew0=1;
+for ib=1:nsub
+   s=st(ib); ed=st(ib)+Nsub-1;
+   rsub0=r0(s:ed);   csub0=c0(s:ed);
+   sr3=rsub0(qN1:hqN)+inc;
+   sc3=csub0(qN1:hqN);
+   if inc>0
+      %There will be 6 sub-squares, and they are devided into 5 connected parts below.
+      sr1=rsub0(1:qN);        sc1=csub0(1:qN);
+      sr2=sr1+inc;            %sc2=sc1, thus, use sc1 below directly.
+      sr5=rsub0(hqN1:Nsub);   sc5=csub0(hqN1:Nsub);
+      sr4=sr5+inc;            %sc4=sc5, thus, use sc5 below directly.
+      
+      rsub(1:qN)=sr1; rsub(qN1:hN)=sr2; rsub(hN1:Nsub)=sr3; rsub(Nsub1:Nq)=sr4;  rsub(Nq1:Nh)=sr5;
+      csub(1:qN)=sc1; csub(qN1:hN)=sc1; csub(hN1:Nsub)=sc3; csub(Nsub1:Nq)=sc5;  csub(Nq1:Nh)=sc5;
+      snew=stnew(ib); ednew=stnew(ib)+Nsub+hN-1;
+      r(ednew0:snew-1)=r0(ed0:s-1); r(snew:ednew)=rsub; 
+      c(ednew0:snew-1)=c0(ed0:s-1); c(snew:ednew)=csub; 
+      ed0=ed; ednew0=ednew;
+   else
+      snew=stnew(ib); ednew=stnew(ib)+hN-1;
+      r(ednew0:snew-1)=r0(ed0:s-1); 
+      r(snew:ednew)=sr3; 
+      c(ednew0:snew-1)=c0(ed0:s-1); 
+      c(snew:ednew)=sc3; 
+      ed0=ed; ednew0=ednew;
+   end
+end
+r(ednew0+1:len)=r0(ed0+1:N0);  c(ednew0+1:len)=c0(ed0+1:N0);
+if inc>0
+   stnew=stnew+qN;
+else
+   stnew=stnew-qN;
+end
