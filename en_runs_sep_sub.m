@@ -16,11 +16,20 @@ if thd>1
       biny = [biny bin];
    else
       pk=length(rk)/sum(rk);
-      if pk < 0.32
+%       if pk < 0.32 为了测试delta=6时 修改的
+       if pk < 0.32
          [bin,codebook]=encode_stationary_source_Nsym(rk,pk,thd); %codebook %%%%%%%%%
          %codebook=uint8( abs(dec2bin(codebook,2)) -48 );
          %codebook=uint8( abs(dec2bin(codebook,3)) -48 ); %modified Nov.21, 2014
-         codebook=SFcode(codebook+1,16);  %modified Mar. 30, 2015
+%             if codebook>15
+%                 codebook=15;
+%             end
+%           codebook=SFcode(codebook+1,16);  %modified Mar. 30, 2015
+  %       codebook=SFcode(codebook+1,6); 
+           if codebook>7
+                codebook=7;[bin,codebook]=encode_stationary_source_Nsym(rk,codebook,thd);
+            end
+          codebook=SFcode(codebook+1,8);  %modified Mar. 30, 2015
          biny = [biny  0 codebook bin];
       else
          c=GolombInv(rk,1);

@@ -29,7 +29,11 @@ if flg==0
    [rk{2},ptr]=de_Kside(biny,thd(2),lenk(2),ptr);
 else
    %codebook=bin2dec(char(biny(ptr:ptr+3)+48));  ptr=ptr+4;
-   [codebook,ptr] = deSFcode(biny,24,ptr); codebook=codebook-1;  %modified 25/04/2015
+   %[codebook,ptr] = deSFcode(biny,24,ptr); codebook=codebook-1;  %modified 25/04/2015
+   
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+   [codebook,ptr] = deSFcode(biny,17,ptr);  codebook=codebook-1;  %<====2021年4月25日修改
+   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    [rk{2},ptr]=decode_stationary_source_Nsym_lenr(biny,codebook,lenk(2),thd(2),ptr);
 end
 

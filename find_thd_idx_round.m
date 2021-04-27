@@ -10,7 +10,12 @@ end
 
 if idx>1
    %if psm-sum(n(1:thd_arr(idx-1)))  <  sum( n(1:thd_arr(idx)))-psm  %<============================modified Oct 21, 2020
-   if (psm-sum(n(1:thd_arr(idx-1))) < sum( n(1:thd_arr(idx)))-psm)  ||  (lenn-thd_arr(idx)<=1) %<======modified Oct 21, 2020
+%    if (psm-sum(n(1:thd_arr(idx-1))) < sum( n(1:thd_arr(idx)))-psm)  ||  (lenn-thd_arr(idx)<=1) %<======modified Oct 21, 2020
+%       idx=idx-1;
+%    end
+    sum1=sum(n(1:thd_arr(idx-1)));
+    sum2=sum( n(1:thd_arr(idx)));
+   if (psm- sum1< sum2-psm)  ||  (lenn-thd_arr(idx)<=1) %<======modified Oct 21, 2020
       idx=idx-1;
    end
 end

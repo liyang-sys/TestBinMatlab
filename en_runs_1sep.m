@@ -14,6 +14,9 @@ if lenz > 600  &&  length(r)>=5
    %encoding sep ---------------------------------------------
    [rs,lastBit,ps]=Golomb0(sep);  biny=[biny lastBit];
    [bin,codebook]=encode_stationary_source(rs,ps); %codebook
+         if codebook>4 %<====== modified (added Dec. 24, 2017) 
+              codebook=4; [bin,codebook]=encode_stationary_source(r,codebook);
+         end  
    codebook=uint8(SFcode(codebook+1,5)); 
    biny=[biny codebook  bin];
    %encoding rk and rw ---------------------------------------

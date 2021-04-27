@@ -19,6 +19,7 @@ end
 biny=[biny SFcode(nsep-1,5)];
 
 
+
 %nsep %%%%%%%%%%%%%%%%%%%
 
 %-----------------------------------------------------------------------
@@ -78,7 +79,14 @@ for nsp=nsep:-1:1
       else
          %fprintf('\nhere!!!!!!!!!!!!!!!!\n') %%%%%%%%%%%%%%%%
          [bin,codebook]=encode_stationary_source_Nsym(rk,prob,thd); %codebook %%%%%%%%%%%%
-         codebook=SFcode(codebook+1,20);   %<==== modified Jan 20, 2015
+%          if codebook>19 
+%              codebook=19; 
+%              [bin,codebook]=encode_stationary_source_Nsym(rk,codebook,thd); 
+%          end  
+%         codebook=SFcode(codebook+1,20);   %<==== modified Jan 20, 2015
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        codebook=SFcode(codebook+1,17);   %<====2021年4月25日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
          biny = [biny  1 codebook bin];
       end
       

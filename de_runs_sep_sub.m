@@ -16,8 +16,10 @@ if thd>1
       if flg<0.5
          %codebook=bin2dec(char(biny(ptr:ptr+1)+48));  ptr=ptr+2; 
          %codebook=bin2dec(char(biny(ptr:ptr+2)+48)),  ptr=ptr+3;  %modified Nov. 21, 2014
-         [codebook,ptr] = deSFcode(biny,16,ptr); codebook=codebook-1;    %modified Mar. 30, 2015
-         [rk,ptr]=decode_stationary_source_Nsym_lenr(biny,codebook,lenk,thd,ptr);
+         %[codebook,ptr] = deSFcode(biny,16,ptr); codebook=codebook-1;    %modified Mar. 30, 2015
+%         [codebook,ptr] = deSFcode(biny,6,ptr); codebook=codebook-1;  
+ [codebook,ptr] = deSFcode(biny,8,ptr); codebook=codebook-1;  
+        [rk,ptr]=decode_stationary_source_Nsym_lenr(biny,codebook,lenk,thd,ptr);
       else
          [c,ptr]=de_KsideSub_n1s(ptr,biny,lenk);
          rk=Golomb0(c);

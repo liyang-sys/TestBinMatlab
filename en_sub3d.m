@@ -37,15 +37,15 @@ if binq(1)>0
       sn=sign(1+sign(qcf));
    end   
 %------------------------------------------
-%    testDataMat = int32(cf0);
-%    fid=fopen('mqcf.txt','w'); %写的方式打开文件（若不存在，建立文件）；
-%    fwrite(fid,testDataMat,'int32');
-%    fclose(fid);
-%    
-%    testDataMat = uint32(sn);
-%    fid=fopen('msn.txt','w'); %写的方式打开文件（若不存在，建立文件）；
-%    fwrite(fid,testDataMat,'uint32');
-%    fclose(fid);
+   testDataMat = int32(cf0);
+   fid=fopen('mCf.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+   fwrite(fid,testDataMat,'int32');
+   fclose(fid);
+    
+   testDataMat = uint32(sn);
+   fid=fopen('mSn.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+   fwrite(fid,testDataMat,'uint32');
+   fclose(fid);
   %--------------------------------------------------
 
    [bin,xx]=en_sub3d_sub2(cf0,sn,max(cf0));

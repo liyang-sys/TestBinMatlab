@@ -51,8 +51,13 @@ for nsp=nsep:-1:1
       if flg==0
          [rk{nsp},ptr]=de_Kside_new(biny,thd(nsp),lenk(nsp),ptr);
       else
-         [codebook,ptr] = deSFcode(biny,20,ptr);  codebook=codebook-1;    %<==== modified Jan 20, 2015
-         [rk{nsp},ptr]=decode_stationary_source_Nsym_lenr(biny,codebook,lenk(nsp),thd(nsp),ptr);
+         %[codebook,ptr] = deSFcode(biny,20,ptr);  codebook=codebook-1;    %<==== modified Jan 20, 2015
+       
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        [codebook,ptr] = deSFcode(biny,17,ptr);  codebook=codebook-1;  %<====2021年4月25日修改
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+         
+        [rk{nsp},ptr]=decode_stationary_source_Nsym_lenr(biny,codebook,lenk(nsp),thd(nsp),ptr);
       end
    else
       rk{nsp}=ones(1,lenk(nsp));
@@ -65,9 +70,14 @@ end
  %  [rk{1},ptr]=de_Kside_new(biny,thd(1),lenk(1),ptr);
 %else
  %  rk{1}=ones(1,lenk(1));
-%end
-
-
+% %end
+% 
+%      fid=fopen('mRk1.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rk{1}),'uint32');
+%      fclose(fid);
+%      fid=fopen('mRk2.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rk{2}),'uint32');
+%      fclose(fid);
 %synthesize r ------------------------------------------------------------------
 for nsp=nsep:-1:1
    rrw=rrw+thd(nsp);

@@ -1,4 +1,13 @@
 function [bin,sep1,xxx]=en_zone_new(r,lB,nc)
+
+%      fid=fopen('mNewR.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(r),'uint32');
+%      fclose(fid);
+% 
+%      fid=fopen('mNewNc.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(nc),'uint32');
+%      fclose(fid);
+
 th=[cumprod(2*ones(1,11)); 3*cumprod([1 2*ones(1,10)])]; th=reshape(th,1,22); th=[1 th 4096];
 p1=0.7; p2=0.8; Ln=length(nc);
 
@@ -96,6 +105,10 @@ else  %<======================================================= modified (added)
    binw=[];  %<================================================ modified (added) 2017/11/15
 end
 
+testBin=[bin1 bin2 binw];
+     fid=fopen('mbin.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+     fwrite(fid,uint8(testBin),'uint8');
+     fclose(fid);
 
 bin=[lB bin1 bin2 binw];
 xxx=rw2;

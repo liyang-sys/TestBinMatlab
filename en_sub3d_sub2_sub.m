@@ -23,6 +23,9 @@ elseif thd==3
    
    [z1,cf12,cf11]=separate(cfk,thdh);  cf12=cf12-thdh; nc12=nck(thdh+1:thd); nc11=nck(1:thdh);
    [cr1,crc1,r1,lB1,pr,nr1]=k_criterion(z1);  [cr1i,crc1i]=k_criterion(1-z1);  scr1=cr1+cr1i;  scrc1=crc1+crc1i;
+%        fid=fopen('mNr1.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(nr1),'uint32');
+%      fclose(fid);
    binz1=en_r_cr(r1,lB1,nr1,scr1,scrc1,pr,z1);
    [r2A,lB2A,nr2A,scrA,scrcA,cf21,nc21,cf22,nc22,zz,pr]=cr_test(cf11,thdq,nc11);
    if scrA>12

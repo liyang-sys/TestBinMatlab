@@ -1,5 +1,9 @@
 function [bin,c]=en_r0(r)
 
+     fid=fopen('mR.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+     fwrite(fid,uint32(r),'uint32');
+     fclose(fid);
+     
 pw=length(r)/sum(r);
 
 inv=0;   lastRun=r(length(r));

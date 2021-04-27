@@ -10,9 +10,13 @@ switch thd
          rk=c+1;
       else
          %codebook = bin2dec( char(bin(ptr:ptr+1)+48) ) +1;   ptr=ptr+2;
-         codebook = bin2dec( char(bin(ptr:ptr+2)+48) ) +1;   ptr=ptr+3;  %modified 17/04/15
+         %codebook = bin2dec( char(bin(ptr:ptr+2)+48) ) +1;   ptr=ptr+3;  %modified 17/04/15
+         codebook = bin2dec( char(bin(ptr:ptr+1)+48) ) +1;   ptr=ptr+2;
          lastBit=bin(ptr);  ptr=ptr+1;
          [runs,ptr]=decode_stationary_source_sumr(bin,codebook,lenr,ptr);
+%      fid=fopen('mRuns.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(runs),'uint32');
+%      fclose(fid);
          rk=GolombInv(runs,lastBit)+1;
       end
    case 3
@@ -48,11 +52,22 @@ switch thd
 
       [sep1,ptr]=de_KsideSub(ptr,bin,sum(sep));
       [sep2,ptr]=de_KsideSub(ptr,bin,sum(sep1));
-      [c,ptr]=de_KsideSub(ptr,bin,sum(sep2));  rA2=c+1;
+      [c,ptr]=de_KsideSub(ptr,bin,sum(sep2)); 
+      rA2=c+1;
 
       rA1=separate_inv(sep2,rA2+1,ones(1,length(sep2)-sum(sep2)));
+      
+%             fid=fopen('mRa1.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rA1),'uint32');
+%      fclose(fid);
       rA=separate_inv(sep1,rA1+1,ones(1,length(sep1)-sum(sep1)));
       
+%       fid=fopen('mRa.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rA),'uint32');
+%      fclose(fid);
+%            fid=fopen('mRb.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rB),'uint32');
+%      fclose(fid);
       rk=separate_inv(sep,rA+2,rB);
    otherwise
       [sep,ptr]=de_KsideSub(ptr,bin,lenr);

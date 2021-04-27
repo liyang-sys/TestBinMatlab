@@ -15,6 +15,11 @@ if flg==1
 else
    [rs,ptr]=de_runs_2sepsA(bin,cbook,ptr);
 end
+
+if ptr==262224210
+    
+zxxxx=10;
+end
 sep1=GolombInv(rs,lBs); 
 minsep1=min(sep1); maxsep1=max(sep1);
 
@@ -74,6 +79,13 @@ end   %<================================================================= modifi
 %======================================================================== modified 2017/11/15
 if minsep1==0
    if maxsep1==1
+%      fid=fopen('mRw1.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rw1),'uint32');
+%      fclose(fid);
+%      
+%      fid=fopen('mRk1.txt','w'); %写的方式打开文件（若不存在，建立文件）；
+%      fwrite(fid,uint32(rk1),'uint32');
+%      fclose(fid);
       r=separate_inv(sep1,rw1+thd1,rk1);
    else
       r=rk1;

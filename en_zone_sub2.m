@@ -65,7 +65,14 @@ if prob>0.31
 else
    [bin,codebook]=encode_stationary_source_Nsym(rk,prob,thd); %codebook %%%%%%%%%%%%
    %codebook=uint8( abs(dec2bin(codebook,4)) -48 );
-   codebook = SFcode(codebook+1,24); %modified 25/04/2015
+%          if codebook>23 
+%              codebook=23; 
+%              [bin,codebook]=encode_stationary_source_Nsym(rk,codebook,thd);
+%          end  
+%    codebook = SFcode(codebook+1,24); %modified 25/04/2015
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        codebook=SFcode(codebook+1,17);   %<====2021年4月25日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
    biny = [biny  1 codebook bin];
 end
 
