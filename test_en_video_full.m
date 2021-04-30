@@ -15,8 +15,8 @@ clear a ar
 %maxa=max(max(max(a))); mina=min(min(min(a)));
 
 
-% h=1080; w=1920; f1=1; Nframe=96; fmt=422; bitdepth=8;
-h=2160; w=3840; f1=1; Nframe=96; fmt=422; bitdepth=10;
+h=1080; w=1920; f1=1; Nframe=96; fmt=422; bitdepth=8;
+% h=2160; w=3840; f1=1; Nframe=96; fmt=420; bitdepth=10;
 % a=double(read_yuv('BirdsInCage_1920x1080_60_8bit_422.yuv',h,w,f1,Nframe,fmt,bitdepth));
 
 % a=double(read_yuv('\1080\BirdsInCage_1920x1080_60_10bit_422.yuv',h,w,f1,Nframe,fmt,bitdepth))/4;
@@ -24,7 +24,7 @@ h=2160; w=3840; f1=1; Nframe=96; fmt=422; bitdepth=10;
 k=0; %time-domain decom control: k=0: all subs - original design; k=1: 1:128; k=2: 1:256, see 'transform_time_domainB.m'
 % a=single(a);
 % coef=transform_3d_cfp8B(a,k); 
-[coef]=readcoef('Video_Beauty.dat','PTV_Beauty.dat',h,w);
+[coef]=readcoef('Video_Oldtown.dat','PTV_Oldtown.dat',h,w);
 %Test results show that the time-domain control does not contribute to observable gain!
 clear qcoef qcoef_dum;
 %coef=transform_3d_cfp16(a); 
@@ -33,7 +33,7 @@ clear qcoef qcoef_dum;
 %load Cactus_cfp8_3d_transB_5lev; 
 
 % delta0=0.7; 
-delta0=50;%trim<=======================================================
+delta0=90;%trim<=======================================================
 %==================================================
 %²âÊÔ
 % Lev_sub=coef(:,:,7:8);

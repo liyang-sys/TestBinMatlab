@@ -10,7 +10,11 @@ lenw=sum(sep); lenk=length(sep)-lenw;
 
 if thd>1
    if (thd<10  &&  lenk>500) ||  (thd<7  &&  lenk>300) ||  (thd<4  &&  lenk>150)
-      [rk,ptr]=de_Kside(biny,thd,lenk,ptr);
+%       [rk,ptr]=de_Kside(biny,thd,lenk,ptr);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        [rk,ptr]=de_Kside_new(biny,thd,lenk,ptr);%<====2021年4月27日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
    else
       flg=biny(ptr);  ptr=ptr+1;
       if flg<0.5

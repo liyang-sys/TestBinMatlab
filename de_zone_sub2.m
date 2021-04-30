@@ -26,7 +26,10 @@ rk=cell(1,2);
 %decode rk{2}:
 flg=biny(ptr); ptr=ptr+1;
 if flg==0
-   [rk{2},ptr]=de_Kside(biny,thd(2),lenk(2),ptr);
+%    [rk{2},ptr]=de_Kside(biny,thd(2),lenk(2),ptr);
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        [rk{2},ptr]=de_Kside_new(biny,thd(2),lenk(2),ptr);%<====2021年4月27日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 else
    %codebook=bin2dec(char(biny(ptr:ptr+3)+48));  ptr=ptr+4;
    %[codebook,ptr] = deSFcode(biny,24,ptr); codebook=codebook-1;  %modified 25/04/2015
@@ -39,7 +42,10 @@ end
 
 %decode rk{1}:
 if thd(1)>1
-   [rk{1},ptr]=de_Kside(biny,thd(1),lenk(1),ptr);
+%    [rk{1},ptr]=de_Kside(biny,thd(1),lenk(1),ptr);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        [rk{1},ptr]=de_Kside_new(biny,thd(1),lenk(1),ptr);%<====2021年4月27日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 else
    rk{1}=ones(1,lenk(1));
 end

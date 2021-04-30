@@ -70,7 +70,8 @@ switch thd
             
       p=probility_estimation(rA,nA);
       [bin,codebook]=encode_stationary_source_Nsym(rA,p,thd-2); %cbbbbbb=codebook %%%%%%%%%%%%
-      binck=encode_stationary_source(codebook+1, 4); 
+%       binck=encode_stationary_source(codebook+1, 4); 
+      binck=uint8(SFcode(codebook+1,17));  %codebook: 0 - 16 !!! <===================modified April 27, 2021 
       biny = [biny binck bin];      
       %---------------------------------------------------------------------------------------------------
 end

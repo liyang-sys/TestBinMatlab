@@ -9,7 +9,7 @@ fclose(fileID);
 % sn= fread(fileID,'uint32');
 % sn=sn';
 sn=binIn('SN.txt');
-for ia=1:658
+for ia=1:12383
     snCopy(ia)=sn(ia);
 end
 zzz=max(cf);

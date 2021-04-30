@@ -12,7 +12,10 @@ biny = [biny  bin];
 
 if thd>1
    if  (thd<10 & length(rk)>500)  |  (thd<7 & length(rk)>300)  |  (thd<4 & length(rk)>150)
-      bin=en_Kside(rk,thd,nk);
+%       bin=en_Kside(rk,thd,nk);
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        bin=en_Kside_new(rk,thd,nk);%<====2021年4月27日修改
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       biny = [biny bin];
    else
       pk=length(rk)/sum(rk);

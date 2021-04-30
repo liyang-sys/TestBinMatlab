@@ -76,9 +76,9 @@ switch thd
       
       %Here is the change from de_Kside.m --------------------------------------------
       %codebook=bin2dec(char(bin(ptr:ptr+3)+48));  ptr=ptr+4;
-      [codebook,ptr]=decode_stationary_source_lenr(bin,4,1,ptr); codebook=codebook-1;
+%       [codebook,ptr]=decode_stationary_source_lenr(bin,4,1,ptr); codebook=codebook-1;
       %-------------------------------------------------------------------------------
-      
+      [codebook,ptr] = deSFcode(bin,17,ptr); codebook=codebook-1;   %<===================modified April 27, 2021s
       [rA,ptr]=decode_stationary_source_Nsym_lenr(bin,codebook,sum(sep),thd-2,ptr);     
       rk=separate_inv(sep,rA+2,rB);      
 end

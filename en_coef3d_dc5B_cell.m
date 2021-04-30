@@ -56,6 +56,7 @@ for ia=1:3
    r=rc(ia,1); c=rc(ia,2);
    sub = double(Lev_sub(H{r}, W{c}, :));
    [hh,ww]=size(sub);    [t1,t2]=modify_Hilbert2D(hh,ww);   n=[t1;t2];
+   ia
    [bn,qcf]=en_sub3d_dc5(sub,n,delta0); %bitrate=length(bn)/numel(sub) %%%%%%%%%%   
    TestBin=[TestBin bn];
    bin{1,ia+1} = bn;
